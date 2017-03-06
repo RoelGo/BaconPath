@@ -40,9 +40,10 @@ public class PersonController {
 
     @RequestMapping(path = "/bacon/var", method = RequestMethod.GET)
     public int getBaconLenght(@RequestParam(value = "name") String name) {
+        System.out.println(name);
         return personRepo.getBacon(name).stream()
-                .filter(person -> person.getName().equals("Kevin Bacon"))
-                .filter(person -> person.getName().equals(name))
+                .filter(person -> person.getName().toLowerCase().equals("Kevin Bacon".toLowerCase()))
+                .filter(person -> person.getName().toLowerCase().equals(name.toLowerCase()))
                 .toArray()
                 .length;
     }
